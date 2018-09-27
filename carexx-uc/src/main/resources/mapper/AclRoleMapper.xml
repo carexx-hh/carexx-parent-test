@@ -54,6 +54,9 @@
 		    <if test="status != null">
 		    	and status = #{status,jdbcType=TINYINT}
 		    </if>
+		    <if test="instId != null and instId > 0">
+		    	and inst_id = #{instId,jdbcType=INTEGER}
+		    </if>
 		</where>
 	</select>
 	<select id="selectAclRoleList" parameterType="com.sh.carexx.bean.acl.AclRoleFormBean" resultMap="BaseResultMap">
@@ -71,6 +74,9 @@
 		    <if test="status != null">
 		    	and status = #{status,jdbcType=TINYINT}
 		    </if>
+		    <if test="instId != null and instId > 0">
+		    	and inst_id = #{instId,jdbcType=INTEGER}
+		    </if>
 		</where>
 		order by
 			create_time desc
@@ -82,7 +88,7 @@
 		)
 		values (
 			#{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-			#{remark,jdbcType=VARCHAR}, now(), #{creator,jdbcType=INTEGER}
+			#{remark,jdbcType=VARCHAR}, #{instId,jdbcType=INTEGER}, now(), #{creator,jdbcType=INTEGER}
 		)
 	</insert>
 	<update id="updateStatus">

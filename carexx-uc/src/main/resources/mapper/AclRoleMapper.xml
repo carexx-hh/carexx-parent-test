@@ -6,6 +6,7 @@
 		<result column="name" jdbcType="VARCHAR" property="name" />
 		<result column="status" jdbcType="TINYINT" property="status" />
 		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="inst_id" jdbcType="INTEGER" property="instId" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="creator" jdbcType="INTEGER" property="creator" />
 		<result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />

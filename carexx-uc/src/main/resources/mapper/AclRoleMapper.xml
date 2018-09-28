@@ -85,7 +85,7 @@
 	</select>
 	<insert id="insert" parameterType="com.sh.carexx.model.uc.AclRole">
 		insert into carexx_acl_role (
-			name, status, remark, create_time, creator
+			name, status, remark, create_time, inst_id, creator
 		)
 		values (
 			#{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 

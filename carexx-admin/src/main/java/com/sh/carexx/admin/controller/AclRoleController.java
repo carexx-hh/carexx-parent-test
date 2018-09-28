@@ -36,7 +36,7 @@ public class AclRoleController extends BaseController {
 
 	@RequestMapping(value = "/list_all")
 	public String queryAllAvailable() {
-		return this.ucServiceClient.queryAllAvailableAclRoleList(this.getCurrentUser().getId());
+		return this.ucServiceClient.queryAllAvailableAclRoleList(this.getCurrentUser().getInstId());
 	}
 
 	@RequestMapping(value = "/list_all_auth")

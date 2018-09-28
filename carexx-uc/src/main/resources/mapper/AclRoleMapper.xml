@@ -35,8 +35,12 @@
 			<include refid="Base_Column_List" />
 		from 
 			carexx_acl_role
-		where 
-			status = 1 and inst_id = #{instId,jdbcType=INTEGER}
+		<where>
+				status = 1 
+			<if test="instId != null and instId != 0">
+				and inst_id = #{instId,jdbcType=INTEGER}
+			</if>
+		</where>
 		order by
 			create_time desc
 	</select>

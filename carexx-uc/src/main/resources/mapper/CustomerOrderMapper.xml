@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.sh.carexx.model.uc.CustomerOrder">
 		<id column="id" jdbcType="BIGINT" property="id" />
 		<result column="order_type" jdbcType="TINYINT" property="orderType" />
+		<result column="service_address" jdbcType="TINYINT" property="serviceAddress" />
 		<result column="user_id" jdbcType="INTEGER" property="userId" />
 		<result column="customer_id" jdbcType="INTEGER" property="customerId" />
 		<result column="inst_id" jdbcType="INTEGER" property="instId" />
@@ -28,7 +29,7 @@
 		<result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
 	</resultMap>
 	<sql id="Base_Column_List">
-		id, order_type, service_address, user_id, customer_id, inst_id, service_id, order_no, order_amt, adjust_amt, inpatient_area_id, accurate_address, service_start_time,
+		id, order_type, service_address, user_id, customer_id, inst_id, service_id, order_no, order_amt, adjust_amt, inpatient_area_id, inpatient_ward, service_start_time,
 		service_end_time, holiday, order_status, operator, order_remark, inst_sys_id, proof_type, receipt_no, invoice_no, signing_person, create_time, modify_time
 	</sql>
 

@@ -229,7 +229,7 @@
 		INSERT INTO carexx_customer_order (
 			order_type, service_address, user_id, customer_id, inst_id,
 			service_id, order_no, order_amt, adjust_amt, inpatient_area_id, inpatient_ward,
-			service_start_time, service_end_time, holiday, order_status, operator_id, order_remark,
+			service_start_time, service_end_time, holiday, order_status, operator, order_remark,
 			inst_sys_id, proof_type, receipt_no, invoice_no, signing_person, create_time
 			)
 		VALUES (
@@ -239,7 +239,7 @@
 			#{serviceId,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{orderAmt,jdbcType=DECIMAL}, #{adjustAmt,jdbcType=DECIMAL},
 			#{inpatientAreaId,jdbcType=INTEGER}, #{inpatientWard,jdbcType=VARCHAR},
 			#{serviceStartTime,jdbcType=TIMESTAMP}, #{serviceEndTime,jdbcType=TIMESTAMP}, #{holiday,jdbcType=DECIMAL},
-			#{orderStatus,jdbcType=TINYINT}, #{operatorId,jdbcType=INTEGER}, #{orderRemark,jdbcType=VARCHAR},
+			#{orderStatus,jdbcType=TINYINT}, #{operator,jdbcType=INTEGER}, #{orderRemark,jdbcType=VARCHAR},
 			#{instSysId,jdbcType=INTEGER}, #{proofType,jdbcType=TINYINT}, #{receiptNo,jdbcType=VARCHAR},
 			#{invoiceNo,jdbcType=VARCHAR}, #{signingPerson,jdbcType=VARCHAR}, now()
 		)

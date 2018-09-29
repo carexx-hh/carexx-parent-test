@@ -1081,6 +1081,18 @@ public interface UCServiceClient {
 	BasicRetVal addCustomerOrderSchedule(@RequestBody CustomerOrderScheduleFormBean customerOrderScheduleFormBean);
 
 	/**
+	 *
+	 * addOutSendOrderSchedule:(添加外派排班). <br/>
+	 *
+	 * @author hetao
+	 * @param customerOrderScheduleFormBean
+	 * @return
+	 * @since JDK 1.8
+	 */
+	@RequestMapping(value = "/customerorderschedule/add_outSend", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	BasicRetVal addOutSendOrderSchedule(@RequestBody CustomerOrderScheduleFormBean customerOrderScheduleFormBean);
+	
+	/**
 	 * 
 	 * queryOrderScheduleStaff:(通过订单号查询订单排班). <br/>
 	 * 

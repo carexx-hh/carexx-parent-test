@@ -46,7 +46,7 @@ public class CustomerOrderController extends BaseController {
 	public BasicRetVal addCommunity(@Valid CustomerOrderFormBean customerOrderFormBean, BindingResult bindingResult) {
 		customerOrderFormBean.setInstId(this.getCurrentUser().getInstId());
 		customerOrderFormBean.setOperator(this.getCurrentUser().getAccount());
-		if (bindingResult.hasErrors() || customerOrderFormBean.getInpatientAreaId() == null) {
+		if (bindingResult.hasErrors()) {
 			return new BasicRetVal(CarexxConstant.RetCode.INVALID_INPUT);
 		}
 		return this.ucServiceClient.addCommunityCustomerOrder(customerOrderFormBean);

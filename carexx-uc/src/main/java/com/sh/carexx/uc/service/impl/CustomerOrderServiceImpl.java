@@ -146,10 +146,6 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		List<Map<String, Object>> inputInstIncomeCountList = this.customerOrderMapper.selectInstIncomeCount(customerOrderQueryFormBean);
 		List<Map<String, Object>> outputInstIncomeCountList = new ArrayList<Map<String, Object>>();
 		boolean bool = false;
-		BigDecimal onlinePayAmt = new BigDecimal(0);
-		BigDecimal scanPayAmt = new BigDecimal(0);
-		BigDecimal cashPayAmt = new BigDecimal(0);
-		BigDecimal companyTurnAccountAmt = new BigDecimal(0);
 		
 		for(Map<String, Object> inputInstIncomeCountMap : inputInstIncomeCountList) {
 			int index = 0;
@@ -176,6 +172,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 							outputPounDage = outputPounDage.add(inputPounDage);
 						}
 						
+						BigDecimal onlinePayAmt = new BigDecimal(String.valueOf(outputInstIncomeCountMap.get("onlinePayAmt")));
+						BigDecimal scanPayAmt = new BigDecimal(String.valueOf(outputInstIncomeCountMap.get("scanPayAmt")));
+						BigDecimal cashPayAmt = new BigDecimal(String.valueOf(outputInstIncomeCountMap.get("cashPayAmt")));
+						BigDecimal companyTurnAccountAmt = new BigDecimal(String.valueOf(outputInstIncomeCountMap.get("companyTurnAccountAmt")));
 						if(payType == PayMethod.ONLINE_PAY.getValue()) {
 							onlinePayAmt = onlinePayAmt.add(inputOrderAmt);
 						}else if(payType == PayMethod.SCAN_PAY.getValue()) {
@@ -209,10 +209,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 				continue;
 			}
 			
-			onlinePayAmt = new BigDecimal(0);
-			scanPayAmt = new BigDecimal(0);
-			cashPayAmt = new BigDecimal(0);
-			companyTurnAccountAmt = new BigDecimal(0);
+			BigDecimal onlinePayAmt = new BigDecimal(0);
+			BigDecimal scanPayAmt = new BigDecimal(0);
+			BigDecimal cashPayAmt = new BigDecimal(0);
+			BigDecimal companyTurnAccountAmt = new BigDecimal(0);
 			
 			Map<String, Object> outputInstIncomeCountMap = new HashMap<String, Object>();
 			

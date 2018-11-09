@@ -242,7 +242,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 							}
 						}
 						BigDecimal inputServiceCharge = new BigDecimal(
-								String.valueOf(inputInstIncomeCountMap.get("serviceCharge")));
+								String.valueOf(outputInstIncomeCountMap.get("serviceCharge")));
 						BigDecimal outputServiceCharge = new BigDecimal(
 								String.valueOf(inputOrderAmt)).multiply(serviceRatio).add(inputServiceCharge);
 						

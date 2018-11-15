@@ -519,7 +519,17 @@ public class CustomerOrderManager {
 			customerOrder.setInvoiceNo(customerOrderAdjustFormBean.getProofNo());
 			customerOrder.setReceiptNo("");
 		}
+		customerOrder.setOrderRemark(customerOrderAdjustFormBean.getOrderRemark());
 		this.customerOrderService.update(customerOrder);
+
+		if (customerOrderAdjustFormBean.getOrderType() == OrderType.ONLINE_ORDER.getValue()) {
+			throw new BizException(ErrorCode.ONLINE_ORDER_NOT_MODIFY);
+		}
+		if (customerOrderAdjustFormBean.getPayType() == PayMethod.ONLINE_PAY.getValue()) {
+			throw new BizException(ErrorCode.PAYMETHOD_NOT_ONLINE_PAY);
+		}
+		this.orderPaymentService.updatePayType(customerOrderAdjustFormBean.getOrderNo(),
+				customerOrderAdjustFormBean.getPayType());
 	}
 
 }

@@ -24,6 +24,7 @@ import com.sh.carexx.common.enums.order.OrderStatus;
 import com.sh.carexx.common.enums.order.OrderType;
 import com.sh.carexx.common.enums.order.ProofType;
 import com.sh.carexx.common.enums.order.ServiceAddress;
+import com.sh.carexx.common.enums.pay.PayMethod;
 import com.sh.carexx.common.enums.pay.PayStatus;
 import com.sh.carexx.common.exception.BizException;
 import com.sh.carexx.common.keygen.KeyGenerator;

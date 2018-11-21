@@ -86,6 +86,16 @@ public class CustomerOrderController {
 		}
 		return new DataRetVal(CarexxConstant.RetCode.SUCCESS, new PagerBean(totalNum, result)).toJSON();
 	}
+	
+	@RequestMapping(value = "/list_by_worktypeid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public String queryForListByWorkTypeId(@RequestBody CustomerOrderQueryFormBean customerOrderQueryFormBean) {
+		Integer totalNum = this.customerOrderService.getByWorkTypeIdCount(customerOrderQueryFormBean);
+		List<Map<?, ?>> result = null;
+		if (totalNum > 0) {
+			result = this.customerOrderService.queryByWorkTypeIdList(customerOrderQueryFormBean);
+		}
+		return new DataRetVal(CarexxConstant.RetCode.SUCCESS, new PagerBean(totalNum, result)).toJSON();
+	}
 
 	@RequestMapping(value = "/list_by_userid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String queryForListByUserId(@RequestBody CustomerOrderQueryFormBean customerOrderQueryFormBean) {

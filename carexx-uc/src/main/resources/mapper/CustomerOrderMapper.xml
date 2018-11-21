@@ -251,7 +251,7 @@
 			<if test="realName != null and realName != '' ">
 				AND ic.real_name LIKE CONCAT('%', '', '%')
 			</if>
-			<if test="realName != null and realName != '' ">
+			<if test="orderNo != null and orderNo != '' ">
 				AND co.order_no LIKE CONCAT('%', '')
 			</if>
 			<if test="serviceAddress != null and serviceAddress != '' ">
@@ -275,7 +275,7 @@
 			ic.phone phone,
 			cs.service_name serviceName,
 			iia.inpatient_area inpatientArea,
-			co.accurate_address accurateAddress,
+			co.inpatient_ward inpatientWard,
 			co.service_start_time serviceStartTime,
 			co.service_end_time serviceEndTime
 		FROM
@@ -292,7 +292,7 @@
 			<if test="realName != null and realName != '' ">
 				AND ic.real_name LIKE CONCAT('%', '', '%')
 			</if>
-			<if test="realName != null and realName != '' ">
+			<if test="orderNo != null and orderNo != '' ">
 				AND co.order_no LIKE CONCAT('%', '')
 			</if>
 			<if test="serviceAddress != null and serviceAddress != '' ">

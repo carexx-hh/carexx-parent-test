@@ -143,7 +143,7 @@ public class CustomerOrderScheduleManager {
 		Date amountStartDate = serviceStartTime;
 		Date amountEndDate = serviceStartTime;
 		// 如果排班开始时间小时数等于8
-		if (DateUtils.getHourOfDay(serviceStartTime) == 8) {
+		if (DateUtils.getHourOfDay(serviceStartTime) < 12) {
 			// 总小时小于24,则直接添加该条记录
 			if (hourNum < 24) {
 				this.doShedule(customerOrderScheduleFormBean, serviceStartTime, serviceEndTime);

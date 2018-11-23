@@ -241,10 +241,11 @@
 			carexx_customer_order co
 		LEFT JOIN carexx_inst_customer ic ON co.customer_id = ic.id
 		LEFT JOIN carexx_care_service cs ON co.service_id = cs.id
-		LEFT JOIN carexx_inst_inpatient_area iia ON co.inpatient_area_id = iia.id
 		WHERE
 			cs.work_type_id = #{workTypeId,jdbcType=INTEGER}
-			AND co.order_status = 1
+			AND co.order_status = 1 AND co.service_address = 1
+			AND co.service_start_time >= #{serviceStartTime}
+			AND co.service_start_time <![CDATA[<=]]> #{serviceEndTime}
 			<if test="instId != null and instId > 0">
 				AND co.inst_id = #{instId,jdbcType=INTEGER}
 			</if>
@@ -254,39 +255,26 @@
 			<if test="orderNo != null and orderNo != '' ">
 				AND co.order_no LIKE CONCAT('%', '')
 			</if>
-			<if test="serviceAddress != null and serviceAddress != '' ">
-				AND co.service_address = #{serviceAddress,jdbcType=TINYINT}
-			</if>
-			<if test="serviceStartTime != null and serviceStartTime != '' ">
-				AND co.service_start_time >= #{serviceStartTime}
-			</if>
-			<if test="serviceEndTime != null and serviceEndTime != '' ">
-				AND co.service_start_time <![CDATA[<=]]> #{serviceEndTime}
-			</if>
 	</select>
 	<select id="selectByWorkTypeIdList" parameterType="com.sh.carexx.bean.order.CustomerOrderQueryFormBean" resultType="java.util.Map">
 		SELECT
 			co.order_no orderNo,
-			co.service_address serviceAddress,
 			co.order_amt orderAmt,
 			co.adjust_amt adjustAmt,
 			ic.real_name realName,
-			ic.sex sex,
-			ic.phone phone,
 			cs.id serviceId,
 			cs.service_name serviceName,
-			iia.inpatient_area inpatientArea,
-			co.inpatient_ward inpatientWard,
 			co.service_start_time serviceStartTime,
 			co.service_end_time serviceEndTime
 		FROM
 			carexx_customer_order co
 		LEFT JOIN carexx_inst_customer ic ON co.customer_id = ic.id
 		LEFT JOIN carexx_care_service cs ON co.service_id = cs.id
-		LEFT JOIN carexx_inst_inpatient_area iia ON co.inpatient_area_id = iia.id
 		WHERE
 			cs.work_type_id = #{workTypeId,jdbcType=INTEGER}
-			AND co.order_status = 1
+			AND co.order_status = 1 AND co.service_address = 1
+			AND co.service_start_time >= #{serviceStartTime}
+			AND co.service_start_time <![CDATA[<=]]> #{serviceEndTime}
 			<if test="instId != null and instId > 0">
 				AND co.inst_id = #{instId,jdbcType=INTEGER}
 			</if>
@@ -295,15 +283,6 @@
 			</if>
 			<if test="orderNo != null and orderNo != '' ">
 				AND co.order_no LIKE CONCAT('%', '')
-			</if>
-			<if test="serviceAddress != null and serviceAddress != '' ">
-				AND co.service_address = #{serviceAddress,jdbcType=TINYINT}
-			</if>
-			<if test="serviceStartTime != null and serviceStartTime != '' ">
-				AND co.service_start_time >= #{serviceStartTime}
-			</if>
-			<if test="serviceEndTime != null and serviceEndTime != '' ">
-				AND co.service_start_time <![CDATA[<=]]> #{serviceEndTime}
 			</if>
 	</select>
 	<insert id="insert" parameterType="com.sh.carexx.model.uc.CustomerOrder">

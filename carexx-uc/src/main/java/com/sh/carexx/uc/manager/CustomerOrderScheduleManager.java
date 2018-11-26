@@ -68,8 +68,7 @@ public class CustomerOrderScheduleManager {
 		if(customerOrderScheduleFormBean.getServiceEndTime() == null) {
 			String serviceStartTime = customerOrderScheduleFormBean.getServiceStartTime();
 			
-			if (customerOrderScheduleFormBean.getJobType() == JobType.DAY_JOB.getValue()
-					|| customerOrderScheduleFormBean.getJobType() == JobType.NIGHT_JOB.getValue()) {
+			if (customerOrderScheduleFormBean.getJobType() == JobType.DAY_JOB.getValue()) {
 				CustomerOrderTime customerOrderTime = this.customerOrderTimeService.queryJobTypeExistence(
 						customerOrderScheduleFormBean.getInstId(), customerOrderScheduleFormBean.getJobType());
 				 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
@@ -85,7 +84,33 @@ public class CustomerOrderScheduleManager {
 					customerOrderScheduleFormBean.setServiceEndTime(
 							serviceStartTime + " " + endTime);
 				}
-			} else {
+			} else if(customerOrderScheduleFormBean.getJobType() == JobType.NIGHT_JOB.getValue()) {
+				CustomerOrderTime customerOrderTime = this.customerOrderTimeService.queryJobTypeExistence(
+						customerOrderScheduleFormBean.getInstId(), customerOrderScheduleFormBean.getJobType());
+				 SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+				 String startTime = formatter.format(customerOrderTime.getStartTime());
+				 String endTime = formatter.format(customerOrderTime.getEndTime());
+	
+				if (ValidUtils.isDate(serviceStartTime)) {
+					customerOrderScheduleFormBean.setServiceStartTime(
+							serviceStartTime + " " + startTime);
+				}
+				DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				Date serviceEndTime = null;
+				try {
+					serviceEndTime = format.parse(serviceStartTime);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Calendar calendar = Calendar.getInstance(); // 得到日历
+				calendar.setTime(serviceEndTime);// 把当前时间赋给日历
+				calendar.add(Calendar.DAY_OF_MONTH, +1); // 设置为后一天
+				
+				if (ValidUtils.isDate(customerOrderScheduleFormBean.getServiceEndTime())
+						|| customerOrderScheduleFormBean.getServiceEndTime() == null) {
+				customerOrderScheduleFormBean.setServiceEndTime(format.format(calendar.getTime() + " " + endTime));
+				}
+			}else {
 				DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 				Date serviceEndTime = null;
 				try {

@@ -148,7 +148,8 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			
 			if (ValidUtils.isDate(customerOrderQueryFormBean.getServiceEndTime())
 					|| customerOrderQueryFormBean.getServiceEndTime() == null) {
-				customerOrderQueryFormBean.setServiceEndTime(format.format(calendar.getTime() + " " + endTime));
+				customerOrderQueryFormBean.setServiceEndTime(format.format(calendar.getTime()));
+				customerOrderQueryFormBean.setServiceEndTime(customerOrderQueryFormBean.getServiceEndTime() + " " + endTime);
 			}
 		} else {
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -229,7 +230,8 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			
 			if (ValidUtils.isDate(customerOrderQueryFormBean.getServiceEndTime())
 					|| customerOrderQueryFormBean.getServiceEndTime() == null) {
-				customerOrderQueryFormBean.setServiceEndTime(format.format(calendar.getTime() + " " + endTime));
+				customerOrderQueryFormBean.setServiceEndTime(format.format(calendar.getTime()));
+				customerOrderQueryFormBean.setServiceEndTime(customerOrderQueryFormBean.getServiceEndTime() + " " + endTime);
 			}
 		} else {
 			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");

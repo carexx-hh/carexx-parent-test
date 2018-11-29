@@ -361,13 +361,15 @@
 			ic.real_name realName,
 			cs.id serviceId,
 			cs.service_name serviceName,
-			co.service_start_time serviceStartTime,
-			co.service_end_time serviceEndTime
+			os.staff_settle_amt staffSettleAmt,
+			cos.service_start_time serviceStartTime,
+			cos.service_end_time serviceEndTime
 		FROM
 			carexx_customer_order co
 		LEFT JOIN carexx_care_service cs ON co.service_id = cs.id
 		LEFT JOIN carexx_inst_customer ic ON co.customer_id = ic.id
 		LEFT JOIN carexx_customer_order_schedule cos ON co.order_no = cos.order_no
+		LEFT JOIN carexx_order_settle os ON cos.id = os.schedule_id
 		WHERE
 			cos.service_staff_id = #{staffId,jdbcType=INTEGER}
 		AND co.service_address = 1
@@ -381,7 +383,7 @@
 			AND DATE_FORMAT(cos.service_start_time ,<![CDATA['%Y-%m-%d']]>) >= DATE_FORMAT(#{serviceEndTime},<![CDATA['%Y-%m-%d']]>)
 		</if>
 		ORDER BY
-		co.create_time DESC
+		co.order_no DESC
 		LIMIT ${rowIndex}, ${pageSize}
 	</select>
 	<insert id="insert" parameterType="com.sh.carexx.model.uc.CustomerOrder">

@@ -328,6 +328,9 @@
 						AND co.inst_id = #{instId,jdbcType=INTEGER}
 					</if>
 			)
+		ORDER BY
+		co.create_time DESC
+		LIMIT ${rowIndex}, ${pageSize}
 	</select>
 	<select id="selectStaffScheduleCount" parameterType="com.sh.carexx.bean.order.CustomerOrderQueryFormBean" resultType="java.lang.Integer">
 		SELECT
@@ -377,6 +380,9 @@
 		<if test="serviceEndTime != null and serviceEndTime != '' ">
 			AND DATE_FORMAT(cos.service_start_time ,<![CDATA['%Y-%m-%d']]>) >= DATE_FORMAT(#{serviceEndTime},<![CDATA['%Y-%m-%d']]>)
 		</if>
+		ORDER BY
+		co.create_time DESC
+		LIMIT ${rowIndex}, ${pageSize}
 	</select>
 	<insert id="insert" parameterType="com.sh.carexx.model.uc.CustomerOrder">
 		INSERT INTO carexx_customer_order (

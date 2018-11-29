@@ -250,10 +250,10 @@
 				AND co.inst_id = #{instId,jdbcType=INTEGER}
 			</if>
 			<if test="realName != null and realName != '' ">
-				AND ic.real_name LIKE CONCAT('%', '', '%')
+				AND ic.real_name LIKE CONCAT('%', '${realName}', '%')
 			</if>
 			<if test="orderNo != null and orderNo != '' ">
-				AND co.order_no LIKE CONCAT('%', '')
+				AND co.order_no LIKE CONCAT('%', '${orderNo}')
 			</if>
 			AND co.order_no NOT IN (
 				SELECT
@@ -301,10 +301,10 @@
 				AND co.inst_id = #{instId,jdbcType=INTEGER}
 			</if>
 			<if test="realName != null and realName != '' ">
-				AND ic.real_name LIKE CONCAT('%', '', '%')
+				AND ic.real_name LIKE CONCAT('%', '${realName}', '%')
 			</if>
 			<if test="orderNo != null and orderNo != '' ">
-				AND co.order_no LIKE CONCAT('%', '')
+				AND co.order_no LIKE CONCAT('%', '${orderNo}')
 			</if>
 			AND co.order_no NOT IN (
 				SELECT
@@ -342,7 +342,7 @@
 		LEFT JOIN carexx_customer_order_schedule cos ON co.order_no = cos.order_no
 		WHERE
 			cos.service_staff_id = #{staffId,jdbcType=INTEGER}
-			AND co.order_status = 1 AND co.service_address = 1
+			AND co.order_status in (1,3) AND co.service_address = 1
 		<if test="instId != null and instId > 0">
 			AND co.inst_id = #{instId,jdbcType=INTEGER}
 		</if>
@@ -372,7 +372,7 @@
 		LEFT JOIN carexx_order_settle os ON cos.id = os.schedule_id
 		WHERE
 			cos.service_staff_id = #{staffId,jdbcType=INTEGER}
-			AND co.order_status = 1 AND co.service_address = 1
+			AND co.order_status in (1,3) AND co.service_address = 1
 		<if test="instId != null and instId > 0">
 			AND co.inst_id = #{instId,jdbcType=INTEGER}
 		</if>
